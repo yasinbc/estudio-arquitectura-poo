@@ -1,5 +1,7 @@
-import java.util.Scanner;
+import java.util.*;
 import javax.swing.*;
+import java.io.*;
+
 /**
  * Write a description of class Administrador here.
  * 
@@ -9,8 +11,7 @@ import javax.swing.*;
 public class Administrador
 {
     // instance variables - replace the example below with your own
-    private int x;
-    public String usuarios;
+    public ArrayList<String> usuarios;
 
     /**
      * Constructor for objects of class Administrador
@@ -18,38 +19,48 @@ public class Administrador
     public Administrador()
     {
         // initialise instance variables
-        x = 0;
-        usuarios = ""; //esto tiene que ser una matriz o array
+        usuarios = new ArrayList<String>(); //esto tiene que ser una ArrayList
     }
     
-    public void visualisacionUsuariosRegistrados(){
-        String usuariosReg = usuarios;
-        System.out.println(usuariosReg);
+    private void guardarUsuarios(String usuario){
+        usuarios.add(usuario);
+    }
+    
+    public int numeroUsuarios(){
+        return usuarios.size();
+    }
+    
+    public void mostrarUsuarios(int numeroUsuarios){
+        if(numeroUsuarios < 0){
+            //no pasa nada en el programa
+        }else if(numeroUsuarios < numeroUsuarios()){
+            System.out.println(usuarios.get(numeroUsuarios));
+        }else{
+            //No pasa nada en el programa
+        }
     }
     
     public void gestionUsuarios(){
 
-        usuarios = ""; //aqui va a una matriz o arraylist
         String opcion = JOptionPane.showInputDialog("Elija opción de gestion de Usuarios: \n1-Altas \n2-Bajas \n3-Modificaciones");
         
         int opcionGestion = Integer.parseInt(opcion);//pasa de string a entero para que lo lea la condicion
         
-        //flujo de datos de para la gestion de usuarios
+        //flujo de dato para la gestion de usuarios
         if(opcionGestion == 1){
             System.out.println("Ha elegido altas.");
-            opcion = JOptionPane.showInputDialog("Introduzca nombre de usuario a registar: ");
-            String opcionUsuario = opcion;
+            opcion = JOptionPane.showInputDialog("Introduzca nombre de usuario a registar: ");           
             
-            usuarios = opcionUsuario;
-                
-            System.out.println(usuarios+" dado de alta en el sistema");
+            guardarUsuarios(opcion);
+            
+            System.out.println(opcion+" dado de alta en el sistema");
             
         }else if(opcionGestion == 2){
             System.out.println("Ha elegido bajas.");
             opcion = JOptionPane.showInputDialog("Introduzca usuario a dar de baja: ");
             String opcionUsuario = opcion;
             
-            usuarios = opcionUsuario;
+            //usuarios = opcionUsuario;
                 
             System.out.println(usuarios+" dado de baja en el sistema");
         }else if(opcionGestion == 3){
@@ -57,7 +68,7 @@ public class Administrador
             opcion = JOptionPane.showInputDialog("Introduzca usuario a modificar: ");
             String opcionUsuario = opcion;
             
-            usuarios = opcionUsuario;
+            //usuarios = opcionUsuario;
                 
             System.out.println(usuarios + " quiere modificar parametros en el sistema");
         }else{
@@ -65,17 +76,5 @@ public class Administrador
         }
         
     
-    }
-    
-    /**
-     * An example of a method - replace this comment with your own
-     * 
-     * @param  y   a sample parameter for a method
-     * @return     the sum of x and y 
-     */
-    public int sampleMethod(int y)
-    {
-        // put your code here
-        return x + y;
     }
 }
